@@ -1,18 +1,33 @@
 import React, {FC, useEffect, useState} from 'react';
 import {UserModel} from "../../models/UserModel";
 import {getAllUsers} from "../../service/user.api.service";
+import UserComponent from "../UserComponent/UserComponent";
+import {PostModel} from "../../models/PostModel";
 
-const UsersComponent:FC = () => {
 
-    const [user, SetUser] = useState<UserModel[]>([]);
+interface IProps{
+    getPosts?: (userId: number) => PostModel[]
+    handleUserSelection?: (userId: number) => void
+}
+const UsersComponent:FC<IProps> = ({getPosts,handleUserSelection}) => {
+
+    const [users, SetUser] = useState<UserModel[]>([]);
 
     useEffect(() =>{
-        getAllUsers().then(data => console.log(data))
+        getAllUsers().then(({data: {users}}) => SetUser(users))
     },[])
+
 
     return (
         <div>
-            
+            {users
+                .map( value => (<UserComponent
+                    key={value.id}
+                    content={value}
+                    getPosts={getPosts}
+                    handleUserSelection = {handleUserSelection}
+                />))
+            }
             </div>
     );
 };
