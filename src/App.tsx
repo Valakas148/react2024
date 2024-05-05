@@ -7,18 +7,13 @@ import PostsComponent from "./component/PostsComponent/PostsComponent";
 
 const App = () => {
 
-    const getPosts = (userId: number) => {
-        return []
-    };
 
-    const [posts, SetPosts] = useState<PostModel[]>([])
 
     const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
 
     return (
       <div className={'AppDiv'}>
-        <UsersComponent getPosts={getPosts} handleUserSelection={setSelectedUserId}/>
-
+        <UsersComponent handleUserSelection={setSelectedUserId}/>
         {selectedUserId !== null && <PostsComponent contentId={selectedUserId} />}
 
       </div>

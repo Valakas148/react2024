@@ -5,11 +5,10 @@ import {PostModel} from "../../models/PostModel";
 
 type IPropsUserComponent = {
     content: UserModel,
-    getPosts?: (userId: number) => PostModel[],
         handleUserSelection?: (userId: number) => void
 }
     & {children?: React.ReactNode}
-const UserComponent:FC<IPropsUserComponent> = ({content,getPosts,handleUserSelection}) => {
+const UserComponent:FC<IPropsUserComponent> = ({content,handleUserSelection}) => {
 
     const onClickHandler = () => {
         if (handleUserSelection) {

@@ -6,10 +6,9 @@ import {PostModel} from "../../models/PostModel";
 
 
 interface IProps{
-    getPosts?: (userId: number) => PostModel[]
     handleUserSelection?: (userId: number) => void
 }
-const UsersComponent:FC<IProps> = ({getPosts,handleUserSelection}) => {
+const UsersComponent:FC<IProps> = ({handleUserSelection}) => {
 
     const [users, SetUser] = useState<UserModel[]>([]);
 
@@ -24,7 +23,6 @@ const UsersComponent:FC<IProps> = ({getPosts,handleUserSelection}) => {
                 .map( value => (<UserComponent
                     key={value.id}
                     content={value}
-                    getPosts={getPosts}
                     handleUserSelection = {handleUserSelection}
                 />))
             }
