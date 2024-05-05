@@ -1,0 +1,5 @@
+.postsDiv{
+    display: flex;
+    position: fixed;
+    left: 20%;
+}

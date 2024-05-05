@@ -2,7 +2,7 @@ import React, {FC, useEffect, useState} from 'react';
 import {PostModel} from "../../models/PostModel";
 import PostComponent from "../PostComponent/PostComponent";
 import {getPostsById} from "../../service/user.api.service";
-
+import styles from "./Posts.module.css";
 
 interface IProps {
     contentId: number,
@@ -18,7 +18,7 @@ const PostsComponent:FC<IProps> = ({contentId}) => {
     },[contentId])
 
     return (
-        <div>
+        <div className={styles.postsDiv}>
             {posts && posts.map((post: PostModel) => (
                 <PostComponent key={post.id} content={post} />
             ))}

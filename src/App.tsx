@@ -16,7 +16,7 @@ const App = () => {
     const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
 
     return (
-      <div>
+      <div className={'AppDiv'}>
         <UsersComponent getPosts={getPosts} handleUserSelection={setSelectedUserId}/>
 
         {selectedUserId !== null && <PostsComponent contentId={selectedUserId} />}
