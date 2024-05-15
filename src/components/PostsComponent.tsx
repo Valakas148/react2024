@@ -8,12 +8,20 @@ const PostsComponent = () => {
 
     useEffect(() => {
         UserService.getPostById(1)
-            .then()
+            .then((value) =>
+                SetPosts(value.data))
     }, []);
 
     return (
         <div>
-
+            <ul>
+                <li>
+                    userId: number,
+                    id: number,
+                    title: string,
+                    body: string
+                </li>
+            </ul>
         </div>
     );
 };
