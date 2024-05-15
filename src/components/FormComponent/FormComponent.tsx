@@ -1,15 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useForm} from "react-hook-form";
-import Joi from "joi";
 import {joiResolver} from "@hookform/resolvers/joi";
 import {PostValidators} from "../../validators/PostValidators";
-
-
-interface IProps {
-    id: number,
-    title: string,
-    body: string
-}
+import {IPostProps} from "../../models/IPostProps";
+import {PostService} from "../../services/post.api";
 
 const FormComponent = () => {
 
@@ -19,40 +13,23 @@ const FormComponent = () => {
         formState:{
             errors,
             isValid
-        }} = useForm<IProps>({mode:'all', resolver: joiResolver(PostValidators)})
+        }} = useForm<IPostProps>({mode:'all', resolver: joiResolver(PostValidators)})
 
+    const [value, SetValue] = useState<IPostProps | null>(null)
 
-    const [value, SetValue] = useState<IProps>({title: '', body: '', id: 0})
-
-
-
-
-    useEffect(() => {
-        if (value.id && value.title && value.body) {
-            fetch('https://jsonplaceholder.typicode.com/posts', {
-                method: 'POST',
-                body: JSON.stringify({
-                    title: value.title,
-                    body: value.body,
-                    userId: value.id,
-                }),
-                headers: {
-                    'Content-type': 'application/json; charset=UTF-8',
-                },
-            })
-                .then((response) => response.json())
-                .then((json) => console.log(json));
-        }
-    }, [value]);
+    const save = (value:IPostProps) => {
+        PostService
+            .savePost(value)
+            .then((post) =>
+                console.log(post.data)
+            );
+    }
 
     return (
         <div>
-            <form onClick={handleSubmit(values => {
-                //console.log(values)
-                SetValue(values)
-            })}>
-                <input type='number' {...register('id')} />
-                {errors.id && <p>{errors.id.message}</p>}
+            <form onClick={handleSubmit(save)}>
+                <input type='number' {...register('userId')} />
+                {errors.userId && <p>{errors.userId.message}</p>}
                 <br/>
                 <input type='text' {...register('title')} />
                 {errors.title && <p>{errors.title.message}</p>}
