@@ -14,7 +14,7 @@ const UserService = {
 
     },
     getPostById: (id:string | undefined):Promise<AxiosResponse<PostModel[]>> =>{
-      return axiosInstence.get('/users' + id + '/posts')
+      return axiosInstence.get('/users/' + id + '/posts')
     }
 }
 

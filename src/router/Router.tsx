@@ -2,7 +2,6 @@ import {createBrowserRouter} from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import UsersComponents from "../components/usersComps/UsersComponents";
 import PostsComponent from "../components/PostsComponent";
-import TestPage from "../TestPage";
 
 
 export const routerCon = createBrowserRouter([
@@ -14,7 +13,5 @@ export const routerCon = createBrowserRouter([
             children: [
                 {path:`:id/posts`, element: <PostsComponent/>}
             ]},
-            {path:'users/:id/posts', element: <PostsComponent/>},
-            {path:'users/posts', element: <TestPage/>},
         ]}
 ])

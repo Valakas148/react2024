@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {PostModel} from "../model/PostModel";
 import {UserService} from "../services/user.api";
 import {useParams} from "react-router-dom";
-import UserComponent from "./usersComps/UserComponent";
 
 const PostsComponent = () => {
 
@@ -16,7 +15,7 @@ const PostsComponent = () => {
         UserService.getPostById(id)
             .then((value) =>
                 SetPosts(value.data))
-    }, [posts]);
+    }, []);
 
     return (
         <div>
