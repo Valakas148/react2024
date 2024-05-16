@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {UserModel} from "../../model/UserModel";
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 type IProps = {
     user: UserModel
@@ -25,6 +25,10 @@ const UserComponent:FC<IProps> = ({user}) => {
             </ul>
 
 
+
+            <NavLink to={user.id.toString() + '/posts'}>Test Nav</NavLink>
+            <br/>
+            <NavLink to={'posts'}>Test Nav 2 </NavLink>
             <button onClick={Handler}>Posts Info</button>
 
             <hr/>

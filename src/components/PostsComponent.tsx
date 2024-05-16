@@ -1,19 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import {PostModel} from "../model/PostModel";
 import {UserService} from "../services/user.api";
+import {useParams} from "react-router-dom";
+import UserComponent from "./usersComps/UserComponent";
 
 const PostsComponent = () => {
 
-    const [posts, SetPosts] = useState<PostModel[]>()
+    const {id} = useParams()
+
+    console.log(id)
+
+    const [posts, SetPosts] = useState<PostModel[]>([])
 
     useEffect(() => {
-        UserService.getPostById(1)
+        UserService.getPostById(id)
             .then((value) =>
                 SetPosts(value.data))
-    }, []);
+    }, [posts]);
 
     return (
         <div>
+            {posts.map(post =>
+                <div> {post.id} </div>)
+                    }
             <ul>
                 <li>
                     userId: number,
