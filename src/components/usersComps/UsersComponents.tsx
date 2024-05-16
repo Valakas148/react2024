@@ -10,7 +10,7 @@ const UsersComponents = () => {
     useEffect(() =>{
         UserService.getUsers()
             .then(value => SetUsers(value.data))
-    })
+    },[])
 
     return (
         <div>

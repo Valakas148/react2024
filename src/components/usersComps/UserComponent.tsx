@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {UserModel} from "../../model/UserModel";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink, Outlet, useNavigate} from "react-router-dom";
 
 type IProps = {
     user: UserModel
@@ -31,6 +31,8 @@ const UserComponent:FC<IProps> = ({user}) => {
             <button onClick={Handler}>Posts Info</button>
 
             <hr/>
+
+            <Outlet/>
         </div>
     );
 };

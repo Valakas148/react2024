@@ -1,6 +1,7 @@
 import axios, {AxiosResponse} from "axios";
 import {UserModel} from "../model/UserModel";
 import {PostModel} from "../model/PostModel";
+import {CommentModel} from "../model/CommentModel";
 
 
 const axiosInstence = axios.create({
@@ -15,6 +16,9 @@ const UserService = {
     },
     getPostById: (id:string | undefined):Promise<AxiosResponse<PostModel[]>> =>{
       return axiosInstence.get('/users/' + id + '/posts')
+    },
+    getComments: ():Promise<AxiosResponse<CommentModel[]>> => {
+        return axiosInstence.get('/comments')
     }
 }
 
