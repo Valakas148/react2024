@@ -2,23 +2,28 @@ import React, {useEffect, useState} from 'react';
 import {CommentModel} from "../../model/CommentModel";
 import {UserService} from "../../services/user.api";
 import CommentComponent from './CommentComponent';
+import {useParams} from "react-router-dom";
 
 
 const CommentsComponent = () => {
 
+
+    const {id} = useParams()
+
     const [comments, SetComm] = useState<CommentModel[]>([])
 
     useEffect(() => {
-        UserService.getComments()
-            .then(value => SetComm(value.data))
-    }, []);
+        if(id) {
+            UserService.getCommentsById(id)
+                .then(value => SetComm(value.data))
+        }
+    }, [id]);
 
     return (
         <div>
 
-            {/*{comments.map(comment: => )}*/}
             {comments.map(comment =>
-                <CommentComponent comment={comment} /> )}
+                <CommentComponent key={comment.id} comment={comment} /> )}
         </div>
     );
 };

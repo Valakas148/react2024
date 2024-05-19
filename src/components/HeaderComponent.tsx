@@ -15,9 +15,6 @@ const HeaderComponent = () => {
 
             <NavLink to={'users'}>to users</NavLink>
 
-            <br/>
-
-            <NavLink to={'/comments'}>to comments</NavLink>
             <hr/>
         </div>
     );

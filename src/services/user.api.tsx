@@ -14,11 +14,14 @@ const UserService = {
         return axiosInstence.get('/users')
 
     },
-    getPostById: (id:string | undefined):Promise<AxiosResponse<PostModel[]>> =>{
+    getPostById: (id:string):Promise<AxiosResponse<PostModel[]>> =>{
       return axiosInstence.get('/users/' + id + '/posts')
     },
     getComments: ():Promise<AxiosResponse<CommentModel[]>> => {
         return axiosInstence.get('/comments')
+    },
+    getCommentsById: (id:string):Promise<AxiosResponse<CommentModel[]>> => {
+        return axiosInstence.get('/posts/' + id + '/comments')
     }
 }
 

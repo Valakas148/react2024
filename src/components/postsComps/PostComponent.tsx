@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {PostModel} from "../../model/PostModel";
+import {NavLink, Outlet} from "react-router-dom";
 
 
 type IProps = {
@@ -14,6 +15,9 @@ const PostComponent:FC<IProps> = ({post}) => {
                 <li> title: {post.title}</li>
                 <li> body: {post.body}</li>
             </ul>
+
+            <NavLink to={post.id.toString() + '/comments'}>To comments</NavLink>
+            <Outlet/>
         </div>
     );
 };

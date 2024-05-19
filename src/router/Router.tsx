@@ -16,7 +16,7 @@ export const routerCon = createBrowserRouter([
             // ]
             },
             {path:`users/:id/posts`, element: <PostsComponent/>},
-            {path:`comments`, element: <CommentPage/>},
+            {path:`users/:id/posts/:id/comments`, element: <CommentPage/>},
 
         ]}
 ])

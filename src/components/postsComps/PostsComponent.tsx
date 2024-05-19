@@ -11,15 +11,17 @@ const PostsComponent = () => {
     const [posts, SetPosts] = useState<PostModel[]>([])
 
     useEffect(() => {
-        UserService.getPostById(id)
-            .then((value) =>
-                SetPosts(value.data))
+        if(id) {
+            UserService.getPostById(id)
+                .then((value) =>
+                    SetPosts(value.data))
+        }
     }, [id]);
 
     return (
         <div>
             {posts.map(post =>
-                <PostComponent post={post} /> )}
+                <PostComponent key={post.id} post={post} /> )}
         </div>
     );
 };
