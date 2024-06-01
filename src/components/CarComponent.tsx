@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-import {ICarsModel} from "../models/ICarsModel";
 import {ICarsWithAuthModel} from "../models/ICarsWithAuthModel";
 
 
