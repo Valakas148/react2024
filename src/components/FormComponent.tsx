@@ -21,7 +21,7 @@ const FormComponent = () => {
     return (
         <div>
             <div>
-                {isAuthState ? <span>ok</span>: <span>not ok</span>}
+                {isAuthState ? <span> logged</span>: <span>account does not exist</span>}
             </div>
             <form onSubmit={handleSubmit(authenticate)}>
                 <input type='text' {...register('username')} />

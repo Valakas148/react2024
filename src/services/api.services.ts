@@ -1,8 +1,9 @@
-import axios, {AxiosError} from "axios";
+import axios, {AxiosError, AxiosResponse} from "axios";
 import {AuthModel} from "../models/AuthModel";
 import {ITokenObtairPair} from "../models/ITokenObtairPair";
 import {ICarsPaginatedModel} from "../models/ICarsPaginatedModel";
 import {retriveLocalStorageData} from "./helpers/helper";
+import {UserModel} from "../models/UserModel";
 
 
 const axiosInstance = axios.create({
@@ -28,6 +29,10 @@ const authService = {
             localStorage.setItem('tokenPair', JSON.stringify(response.data))
         }catch (e) {
             console.log(e)
+            const axiosError = e as AxiosError
+            if (axiosError?.response?.status === 401){
+                console.log('No active account found with the given credentials.')
+            }
         }
         return !!(response?.data?.access && response?.data?.refresh);
     },
@@ -38,12 +43,25 @@ const authService = {
     },
 
 }
-
+const userService = {
+    postUser: async (userData:UserModel):Promise<UserModel | undefined>=>{
+        try {
+            const response:AxiosResponse<UserModel> = await axiosInstance.post('/users', userData);
+            return response.data
+        }
+        catch (e){
+            const axiosError = e as AxiosError
+            if (axiosError?.response?.status === 400){
+                console.log('user model with this username already exists.')
+            }
+        }
+    }
+}
 const carsService = {
-    getCars: async () =>{
+    getCars: async (page:string):Promise<ICarsPaginatedModel | null> =>{
 
         try{
-            const response = await axiosInstance.get<ICarsPaginatedModel>('/cars')
+            const response = await axiosInstance.get<ICarsPaginatedModel>('/cars',{params:{page:page}})
             return response.data;
         }
         catch (e){
@@ -51,10 +69,10 @@ const carsService = {
             if (axiosError?.response?.status === 401){
                 const refreshToken = retriveLocalStorageData<ITokenObtairPair>('tokenPair').refresh;
                 await authService.refresh(refreshToken);
-                await carsService.getCars()
+                await carsService.getCars(page)
             }
         }
-
+        return null;
     }
 }
 
@@ -62,5 +80,6 @@ const carsService = {
 
 export {
     authService,
-    carsService
+    carsService,
+    userService
 }

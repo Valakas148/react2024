@@ -7,6 +7,7 @@ const HeaderComponent = () => {
             <ul>
                 <li><Link to={'/'}>login</Link></li>
                 <li><Link to={'cars'}>cars</Link> </li>
+                <li><Link to={'users'}>create user</Link> </li>
             </ul>
         </div>
     );
