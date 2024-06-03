@@ -17,7 +17,6 @@ const FormComponent = () => {
         setIsAuthState(isAuth)
     }
 
-
     return (
         <div>
             <div>
