@@ -1,10 +1,10 @@
 import React from 'react';
-import {useContexProvider} from "../../contex/ContexProvider";
+import {useStore} from "../../contex/ContexProvider";
 import CommentComponent from "./CommentComponent";
 
 const CommentsComponent = () => {
 
-    const {commentsStore: {allComms}} = useContexProvider()
+    const {commentsStore: {allComms}} = useStore()
 
 
     return (

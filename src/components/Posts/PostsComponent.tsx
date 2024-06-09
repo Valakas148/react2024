@@ -1,13 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {IPostModel} from "../../models/IPostModel";
-import {ApiService} from "../../services/api.service";
 import PostComponent from "./PostComponent";
-import {useContexProvider} from "../../contex/ContexProvider";
+import {useStore} from "../../contex/ContexProvider";
 
 const PostsComponent = () => {
 
 
-    const {postsStore: {allPosts}} = useContexProvider()
+
+    const {postsStore: {allPosts}, postsStore} = useStore()
 
     return (
         <div>

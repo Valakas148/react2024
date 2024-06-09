@@ -1,11 +1,11 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import {useContexProvider} from "../../contex/ContexProvider";
+import {useStore} from "../../contex/ContexProvider";
 import {IPostCommentsModel} from "../../models/IPostCommentsModel";
 import PostCommentComponent from "./PostCommentComponent";
 
 const PostCommentsComponent = () => {
 
-    const {postsStore: {allPosts}, commentsStore: {allComms}} = useContexProvider()
+    const {postsStore: {allPosts}, commentsStore: {allComms}} = useStore()
     const [postComms, setPostComms] = useState<IPostCommentsModel[]>([])
 
     const postCommsArray = useMemo(()=>{

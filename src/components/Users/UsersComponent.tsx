@@ -1,12 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {ApiService} from "../../services/api.service";
-import {IUserModel} from "../../models/IUserModel";
+import React from 'react';
 import UserComponent from "./UserComponent";
-import {useContexProvider} from "../../contex/ContexProvider";
+import {useStore} from "../../contex/ContexProvider";
 
 const UsersComponent = () => {
 
-    const {usersStore: {allUsers}} = useContexProvider()
+    const {usersStore: {allUsers}, usersStore} = useStore()
 
     return (
         <div>
