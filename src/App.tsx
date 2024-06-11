@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {useAppDispatch, useAppSelector} from "./redux/store";
-import {decrement, increment} from "./redux/slice/slice1";
+import {decrement, increment, incrementPlus1, reset} from "./redux/slice/slice1";
 
 const App = () => {
 
@@ -14,13 +14,25 @@ const App = () => {
 
           <h3>{value}</h3>
 
-          <button onClick={()=>{
-            dispatch(increment(2))
-          }}>increment</button>
+          <button onClick={() => {
+              dispatch(increment(2))
+          }}>increment
+          </button>
 
-          <button onClick={()=>{
+          <button onClick={() => {
               dispatch(decrement(3))
-          }}>decrement</button>
+          }}>decrement
+          </button>
+
+          <button onClick={() => {
+              dispatch(reset())
+          }}>reset
+          </button>
+
+          <button onClick={() => {
+              dispatch(incrementPlus1())
+          }}>increment + 1
+          </button>
 
 
       </div>

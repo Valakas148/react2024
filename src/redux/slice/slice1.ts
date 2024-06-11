@@ -17,6 +17,12 @@ export const Counter1Slice = createSlice({
         },
         decrement: (state, action:PayloadAction<number>) =>{
             state.value = state.value - action.payload
+        },
+        reset: (state) =>{
+            state.value = 0
+        },
+        incrementPlus1: (state) =>{
+            state.value = state.value + 1
         }
     }
 })
@@ -24,5 +30,7 @@ export const Counter1Slice = createSlice({
 
 export const {
     increment,
-    decrement
+    decrement,
+    reset,
+    incrementPlus1
 } = Counter1Slice.actions
